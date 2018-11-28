@@ -1,7 +1,7 @@
 library(expss)
 library(formattable)
 
-data = read.csv("./person_salary.csv",stringsAsFactors = FALSE)
+data = read.csv("/Users/admin/Documents/R_book/chapter01/07/person_salary.csv",stringsAsFactors = FALSE)
 Green = "#71CA97"
 Green2 = "#DeF7E9"
 

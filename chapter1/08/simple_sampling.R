@@ -42,8 +42,4 @@ ggplot(data_sim, aes(x=sample_size, y=mean, group=1)) +
   geom_point(aes(size=2), alpha=0.52) +  theme(legend.position="none") +
   geom_errorbar(width=.1, aes(ymin=q2.5, ymax=q97.5), colour="darkred") + labs(x="Sample Size",y= "Candidate A ratio", title="Candidate A ratio by sample size", subtitle="Proportion of people voting for candidate A, assuming 50-50 chance", caption="Circle is mean / Bands are 95% Confidence bands")
 
-print(data_sim)
-
-# install.packages('devtools')
-devtools::install_github('thomasp85/gganimate')
 

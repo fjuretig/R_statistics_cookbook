@@ -2,7 +2,7 @@
 library(R6)
 
 
-customers = read.csv("./Customers_data_missing_products.csv")
+customers = read.csv("./Customers_data.csv")
 
 Customer = R6Class(public=list(Customer_id = NULL,Name = NULL,City = NULL,
 initialize = function(customer_id,name,city,Missing_product,Missing_since){

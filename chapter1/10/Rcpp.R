@@ -1,4 +1,4 @@
-
+library(Rcpp)
 sourceCpp("./rcpp_example.cpp")
 
 Rfunc <- function(rand__vector,rand_matrix){
