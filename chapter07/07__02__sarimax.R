@@ -1,6 +1,6 @@
 library(forecast)  
 
-car_production                  =read.csv("https://apis.datos.gob.ar/series/api/series/metadata=full&ids=309.1_PRODUCCIONDES_0_M_30 &limit=1000&format=csv")  
+car_production                  =read.csv("./car_production.csv")  
 
 car_production$indice_tiempo    = as.Date(car_production$indice_tiempo,"%Y-%m-%d")  
 car_production                  = ts(car_production$produccion_automotriz_unidades,start=c(1981,1),frequency = 12)  
@@ -17,7 +17,7 @@ results
 
 
 predictions <- forecast(results,24) 
-plot.forecast(predictions) 
+plot(predictions) 
 
 
 

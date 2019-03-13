@@ -1,8 +1,7 @@
 library(imputeTS) 
-
 library(ggplot2) 
 
-biodisel_prod                        = read.csv("https://apis.datos.gob.ar/series/api/series/?metadata=full&ids=368.3_BIODISEL_PION__19& limit=1000&format=csv") 
+biodisel_prod                        = read.csv("./biodiesel.csv") 
 biodisel_prod$indice_tiempo          = as.Date(biodisel_prod$indice_tiempo,"%Y-%m-%d") 
 
 
@@ -30,3 +29,5 @@ biodisel_prod_removed = biodisel_prod
 biodisel_prod_removed[c(30,60,90,100,109,120),2] <- NA 
 plotNA.distribution(biodisel_prod_removed$biodisel_produccion) 
 plotNA.distributionBar(biodisel_prod_removed$biodisel_produccion) 
+
+statsNA(biodisel_prod_removed$biodisel_produccion) 

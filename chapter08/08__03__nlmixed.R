@@ -16,7 +16,7 @@ shocks_frame          = cbind(G = 1:100,shocks = rnorm(100,0,1))
 
 merged_frame          = merge(pre____frame,shocks_frame,by="G") 
 
-merged_frame$Y        = 1/(1+exp(-merged_frame$X + shocks)) + merged_frame$NOISE 
+merged_frame$Y        = 1/(1+exp(-merged_frame$X + merged_frame$shocks)) + merged_frame$NOISE 
 
 XYG  = merged_frame[,c(1,2,5)] 
 

@@ -1,12 +1,10 @@
 library("lme4") 
 
-library("glmmLasso") 
-
 library(cAIC4) 
 
-set.seed(15) 
+set.seed(25) 
 
-data = read.csv("C:\\R_book\\sample_random_regression.csv") 
+data = read.csv("./sample_random_regression.csv") 
 
 data$clientid = as.factor(data$clientid) 
 
@@ -55,3 +53,4 @@ cAIC(m6)$caic
 
 
 cAIC(m7)$caic 
+

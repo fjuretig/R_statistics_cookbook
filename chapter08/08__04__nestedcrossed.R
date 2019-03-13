@@ -1,16 +1,20 @@
-xtabs(~ Group + Person, data) 
 
-data       = read.csv("C:\\R_book\\company_areas.csv") 
+
+data       = read.csv("./company_areas.csv") 
+
+xtabs(~ Group + Person, data) 
 
 lmer(Rating ~ -1 + (1 | Group/Person)        , data = data) 
 
 lmer(Rating ~ -1 + (1 | Group) + (1 | Person), data = data) 
 
-xtabs(~ Group + Person, data2) 
+ 
 
 
 
-data2       = read.csv("C:\\R_book\\company_areas2.csv") 
+data2       = read.csv("./company_areas2.csv") 
+
+xtabs(~ Group + Person, data2)
 
 lmer(Rating ~ -1 + (1 | Group/Person)        , data = data2) 
 

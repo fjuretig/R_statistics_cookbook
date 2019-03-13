@@ -3,16 +3,16 @@ library(anomalize)
 library(dplyr) 
 
 library(tibbletime) 
+library(anomalize)
 
 
 
-currency_sales                       = read.csv("https://apis.datos.gob.ar/series/api/series/?metadata=full&ids=349.2_PROMEDIO_DIO__16 & limit=1000&format=csv") 
+currency_sales                       = read.csv("./sold_usd_oilseeds.csv") 
 currency_sales$indice_tiempo         = as.Date(currency_sales$indice_tiempo,"%Y-%m-%d") 
 
 
 
-results_anomalies                    = tibbletime::as_tbl_time(currency_sales,indice_tiempo) %>%time_decompose  
-(promedio_diario,merge = TRUE) %>% anomalize(remainder) %>% time_recompose() 
+results_anomalies                    = tibbletime::as_tbl_time(currency_sales,indice_tiempo) %>%time_decompose(promedio_diario,merge = TRUE) %>% anomalize(remainder) %>% time_recompose() 
 
 results_anomalies %>% plot_anomaly_decomposition(ncol=3,alpha_dots = 0.3) 
 

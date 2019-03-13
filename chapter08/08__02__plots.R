@@ -1,8 +1,10 @@
 library(dplyr) 
 library("lme4") 
 library(ggplot2) 
+library(sjPlot)
+library(sjmisc)
 
-data = read.csv("C:\\R_book\\sample_random_regression.csv") 
+data = read.csv("./sample_random_regression.csv") 
 data$clientid = as.factor(data$clientid) 
 
 
@@ -14,23 +16,28 @@ ggplot(data=data, aes(x=salespeople_involved, y=deal_size, col=clientid))+
 
 
 
-model = lmer(data=data,deal_size ~ salespeople_involved + time_spent_deal +  
-               (1+salespeople_involved+time_spent_deal|clientid) ) 
+model = lmer(data=data,deal_size ~ salespeople_involved + time_spent_deal +  (1+time_spent_deal+salespeople_involved|clientid) )
+ 
 
 
 
 ggplot(data) +  
   aes(x = time_spent_deal, y = deal_size) +  
-  geom_abline(aes(intercept = intercept, slope = time_spent_deal), data = ab_lines) + 
   geom_point() + 
   facet_wrap("clientid") 
 
 
+F = coef(model)$clie
+F$clientid = row.names(F)
 
 
 ggplot(F,aes(x=reorder(clientid, -salespeople_involved), y=salespeople_involved)) +  
   geom_bar(stat="identity", color="blue", fill="white") + labs(x = "Clientid",y = "Fixed + Random effect",title =  
                                                                  "Sales people involved / Deal size slope") 
+
+
+
+plot_model(model,type="re")
 
 
 

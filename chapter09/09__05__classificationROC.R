@@ -4,7 +4,7 @@ library(precrec)
 library(pROC)
 
 set.seed(10) 
-data = read.csv("/Users/fjuretig/Documents/approved.csv") 
+data = read.csv("./approved.csv") 
 data = data[,-c(1,7)] 
 data$Approved_ = "not_approved" 
 data$Approved_[data$Approved == 1] <- "approved" 
