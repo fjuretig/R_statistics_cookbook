@@ -32,4 +32,10 @@ x1 = rospca::robpca(d)
 x1$eigenvalues 
 
 
+
 d[1:1,1:10] <- -400 
+prcomp(d,scale=TRUE,center=TRUE) 
+
+x1 = rospca::robpca(d) 
+
+x1$eigenvalues 

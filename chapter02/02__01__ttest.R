@@ -1,4 +1,6 @@
 library(dplyr) 
+library(car)
+
 data        = read.csv("./heights.csv") 
 data$Sample = as.factor(data$Sample) 
 leveneTest(Height ~ Sample,data) 

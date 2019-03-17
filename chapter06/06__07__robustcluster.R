@@ -1,5 +1,5 @@
 library(tclust) 
-
+library(ggplot2)
 data ("geyser2") 
 
 
@@ -9,5 +9,8 @@ geyser2$cluster <- as.factor(clus_kmeans$cluster)
 
 
 
-plot (clus,main="Standard k-means",xlab="X-axis label", ylab="y-axix label") 
+
 ggplot(geyser2, aes(x=geyser2$`Eruption length`, y=geyser2$`Previous eruption length`,color=geyser2$cluster))   + labs(x = "Eruption length", y = "Previous eruption length")+theme(legend.position="none") +  geom_point(aes(size=3,alpha = 0.2)) 
+
+
+plot (clus_tkmeans,main="Robust k-means",xlab="X-axis label", ylab="y-axix label")

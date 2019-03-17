@@ -1,15 +1,29 @@
 library(robust) 
 
-r = read.csv("/Users/admin/Documents/R_book/chapter2/05/2wayanova.csv") 
+
+r = PlantGrowth
 
 
-d = aov(Sales ~ Colour + Font + Font*Colour,data=r ) 
-
+d = aov(weight ~ group,data=r ) 
+summary(d)
 plot(d, 2) 
 
-summary(d) 
+
+
+robanova = robust::lmRob(weight ~ group,data=r ) 
+robust::anova.lmRob(robanova) 
 
 
 
-robanova = robust::lmRob(Sales ~ Colour + Font + Font*Colour,data=r ) 
+
+
+r[1,1] = 50
+r[2,1] = 50
+d = aov(weight ~ group,data=r ) 
+
+plot(d, 2) 
+summary(d)
+
+
+robanova = robust::lmRob(weight ~ group,data=r ) 
 robust::anova.lmRob(robanova) 

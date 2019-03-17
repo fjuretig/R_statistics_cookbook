@@ -42,7 +42,7 @@ get_posterior <- function(param){
 
 
 get_proposalfunction <- function(param){ 
-  return(rnorm(7,mean = param, sd= c(.015,.015,.015,.015,.015,.015,.015))) 
+  return(rnorm(7,mean = param, sd= c(.028,.028,.028,.028,.028,.028,.028))) 
 } 
 
 
@@ -51,8 +51,8 @@ MetropolisHastings_MCMC <- function(start_, iter_){
   chain_values     = array(dim = c(iter_+1,7)) 
   chain_values[1,] = start_ 
   for (i in 1:iter_){ 
-    proposal = get_proposalfunction(chain[i,]) 
-    probs    = exp(get_posterior(proposal) - get_posterior(chain[i,])) 
+    proposal = get_proposalfunction(chain_values[i,]) 
+    probs    = exp(get_posterior(proposal) - get_posterior(chain_values[i,])) 
     if (is.nan(probs)){ 
       probs = 0 
     } 
@@ -61,7 +61,7 @@ MetropolisHastings_MCMC <- function(start_, iter_){
     if (random_value < probs){ 
       chain_values[i+1,] = proposal 
     }else{ 
-      chain_values[i+1,] = chain[i,] 
+      chain_values[i+1,] = chain_values[i,] 
     } 
   } 
   return(chain_values) 
@@ -69,7 +69,7 @@ MetropolisHastings_MCMC <- function(start_, iter_){
 
 
 startvalue        = c(0.1,0.1,0.1,0.1,0.1,0.1,10) 
-chain_values      = MetropolisHastings_MCMC(startvalue, 12000) 
+chain_values      = MetropolisHastings_MCMC(startvalue, 50000) 
 
 
 data           = data.frame(chain_values) 
@@ -79,6 +79,13 @@ data$iter      = seq.int(nrow(data))
 
 
 ggplot(data=data,aes(x=iter, y=v1_1)) + geom_line(color="blue") 
-data           = data[4000:12000,] 
+
+
+data           = data[10000:50000,] 
+data           = data[seq(1, dim(data)[1], by = 5),]
+ggplot(data=data,aes(x=iter, y=v1_1)) + geom_line(color="blue") 
+
+
+
 seqs           = seq(1,nrow(data),2) 
 plot(density(data[seqs,"v1_1"]),main="V1_1 posterior density") 

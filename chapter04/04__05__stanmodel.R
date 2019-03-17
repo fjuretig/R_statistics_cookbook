@@ -6,12 +6,13 @@ library(DrBats)
 
 
 
-data   = read.csv("/Users/admin/Documents/R_book/chapter3/house_prices.csv") 
+
+data   = read.csv("./house_prices.csv") 
 
 model =" 
 data { 
-real y[125]; 
-real x[125,6]; 
+real y[481]; 
+real x[481,6]; 
 } 
 
 parameters { 
@@ -33,3 +34,20 @@ fit    = stan(model_code = model, data = xy, warmup = 500, iter = 5000, chains =
 
 
 coda__obj = coda.obj(fit) 
+heidel.diag(coda__obj)
+
+HPDinterval(coda__obj)
+
+raftery.diag(coda__obj)
+
+effectiveSize(coda__obj)
+
+cumuplot(coda__obj)
+
+gelman.plot(coda__obj)
+
+geweke.plot(coda__obj)
+
+crosscorr.plot(coda__obj)
+
+autocorr.plot(coda__obj)
