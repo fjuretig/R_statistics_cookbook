@@ -13,6 +13,9 @@ loess2_wrapper <- function(x){
   return (predict(model_loess2,x)) 
 } 
 
+loess1_wrapper(5)   - loess1_wrapper(10)
+loess1_wrapper(10)  - loess1_wrapper(15)
+
 
 plot(data$price,data$sales) 
 curve(loess1_wrapper,add=TRUE,col="red",lwd=3) 
